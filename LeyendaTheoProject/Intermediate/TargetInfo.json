@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "LeyendaTheoProject",
+			"Path": "C:\\Users\\Theo\\Desktop\\LeyendaTheoProject\\Source\\LeyendaTheoProject.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "LeyendaTheoProjectEditor",
+			"Path": "C:\\Users\\Theo\\Desktop\\LeyendaTheoProject\\Source\\LeyendaTheoProjectEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}
