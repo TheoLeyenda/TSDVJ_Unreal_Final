@@ -1,0 +1,1 @@
+Objetivo Proyecto_1: Spawnear un objeto en frente del personaje
