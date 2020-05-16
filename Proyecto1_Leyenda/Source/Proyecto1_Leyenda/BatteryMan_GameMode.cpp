@@ -19,6 +19,7 @@ void ABatteryMan_GameMode::Tick(float DeltaTime)
 void ABatteryMan_GameMode::BeginPlay()
 {
 	Super::BeginPlay();
+	GenerateRecharge();
 	//Corrutina cada cierto tiempo llama a la funcion
 	FTimerHandle UnsedHandle;
 	GetWorldTimerManager().SetTimer(UnsedHandle, this, &ABatteryMan_GameMode::GenerateRecharge, FMath::RandRange(minTimeGenerator, maxTimeGenerator), true);
@@ -34,6 +35,7 @@ void ABatteryMan_GameMode::GenerateRecharge()
 
 	//Asi se hace un Tranform.
 	//FTransform spawnTransform(spawnRotation, spawnPosition, FVector::OneVector);
+	//------------------------------------
 	instanceRechargeBatteryManClass = GetWorld()->SpawnActor(RechargeBatteryMan, &spawnPosition, &spawnRotation);
 	
 }
