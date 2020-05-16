@@ -5,6 +5,7 @@
 #include "Components/SkeletalMeshComponent.h"
 #include "GameFramework/Actor.h"
 #include "Kismet/GameplayStatics.h"
+
 // Sets default values
 ABatteryMan::ABatteryMan()
 {
@@ -60,6 +61,7 @@ void ABatteryMan::Tick(float DeltaTime)
 
 	if(Power <= 0)
 	{
+
 		if(!bDead)
 		{
 			bDead = true;
