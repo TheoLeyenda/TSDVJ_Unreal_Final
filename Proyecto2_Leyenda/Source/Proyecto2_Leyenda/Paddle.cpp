@@ -2,6 +2,9 @@
 
 
 #include "Paddle.h"
+#include "GameFramework/FloatingPawnMovement.h"
+#include "Components/StaticMeshComponent.h"
+
 
 // Sets default values
 APaddle::APaddle()
@@ -9,6 +12,15 @@ APaddle::APaddle()
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	SM_Padle = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("SM Padle"));
+	RootComponent = SM_Padle;
+
+	SM_Padle->SetEnableGravity(false);
+	SM_Padle->SetConstraintMode(EDOFMode::XZPlane);
+	SM_Padle->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+	SM_Padle->SetCollisionProfileName(TEXT("PhysicsActor"));
+
+	FloatingMovement = CreateDefaultSubobject<UFloatingPawnMovement>(TEXT("Floating Pawn Movement"));
 }
 
 // Called when the game starts or when spawned
@@ -29,6 +41,13 @@ void APaddle::Tick(float DeltaTime)
 void APaddle::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
+
+}
+
+void APaddle::MoveHorizontal(float axusValue)
+{
+
+	AddMovementInput(FVector(axusValue, 0.0f, 0.0f), 1.0f, false);
 
 }
 
