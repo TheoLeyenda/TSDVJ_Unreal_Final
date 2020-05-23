@@ -17,6 +17,9 @@ public:
 	// Sets default values for this pawn's properties
 	APaddle();
 
+	//Suavisado de movimiento
+	UPROPERTY(EditAnywhere)
+		float smoothedOutMovement = 2.0f;
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

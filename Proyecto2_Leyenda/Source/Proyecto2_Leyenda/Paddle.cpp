@@ -21,12 +21,17 @@ APaddle::APaddle()
 	SM_Padle->SetCollisionProfileName(TEXT("PhysicsActor"));
 
 	FloatingMovement = CreateDefaultSubobject<UFloatingPawnMovement>(TEXT("Floating Pawn Movement"));
+
 }
 
 // Called when the game starts or when spawned
 void APaddle::BeginPlay()
 {
 	Super::BeginPlay();
+	if (smoothedOutMovement <= 0)
+	{
+		smoothedOutMovement = 1;
+	}
 	
 }
 
@@ -47,7 +52,7 @@ void APaddle::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 void APaddle::MoveHorizontal(float axusValue)
 {
 
-	AddMovementInput(FVector(axusValue, 0.0f, 0.0f), 1.0f, false);
+	AddMovementInput(FVector(axusValue / smoothedOutMovement, 0.0f, 0.0f), 1.0f, false);
 
 }
 
