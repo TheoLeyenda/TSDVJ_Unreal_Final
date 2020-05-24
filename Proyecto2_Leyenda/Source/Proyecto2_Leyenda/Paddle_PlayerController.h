@@ -7,6 +7,7 @@
 #include "Paddle_PlayerController.generated.h"
 
 //class FActorSpawnParameters;
+class APaddle;
 
 class ABall;
 
@@ -18,7 +19,8 @@ class PROYECTO2_LEYENDA_API APaddle_PlayerController : public APlayerController
 public:
 	APaddle_PlayerController();
 
-	
+	UPROPERTY(EditAnywhere)
+	bool bResetPositionPlayer = false;
 		
 protected:
 	virtual void BeginPlay() override;
@@ -36,6 +38,8 @@ protected:
 		TSubclassOf<ABall> BallObj;
 
 	ABall* MyBall;
+
+	APaddle* MyPaddle;
 
 	FVector SpawnLocation = FVector(0.0f, 0.0f, 40.0f);
 	FRotator SpawnRotator = FRotator(0.0f, 0.0f, 0.0f);

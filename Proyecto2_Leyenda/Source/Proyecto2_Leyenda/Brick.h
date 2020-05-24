@@ -17,6 +17,8 @@ public:
 	// Sets default values for this actor's properties
 	ABrick();
 
+	UPROPERTY(EditAnywhere)
+	bool bModifareVelocityEnable = false;
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -27,7 +29,15 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 		UBoxComponent* Box_Collision;
 
+	UPROPERTY(EditAnywhere)
 	float SpeedModifareOnBounce = 1.01f;
+
+	UFUNCTION()
+		void OnOverlapBegin(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp,
+			int32 OtherBodyIndexType, bool bFromeSweep, const FHitResult &SweepResult);
+	
+	void DestroyBrick();
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;

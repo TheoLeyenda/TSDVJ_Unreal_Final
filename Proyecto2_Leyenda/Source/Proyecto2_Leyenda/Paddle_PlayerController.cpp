@@ -20,6 +20,9 @@ void APaddle_PlayerController::BeginPlay()
 	SetViewTarget(CameraActors[0], Params);
 
 	//SpawnInfo = CreateDefaultSubobject<FActorSpawnParameters>(TEXT("SpawnInfo"));
+	TArray<AActor*> Paddles;
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), APaddle::StaticClass(), Paddles);
+	MyPaddle = Cast<APaddle>(Paddles[0]);
 
 	SpawnNewBall();
 }
@@ -60,5 +63,10 @@ void APaddle_PlayerController::SpawnNewBall()
 	if(BallObj)
 	{
 		MyBall = GetWorld()->SpawnActor<ABall>(BallObj, SpawnLocation, SpawnRotator, SpawnInfo);
+		if (bResetPositionPlayer && MyPaddle) 
+		{
+			FVector localPositionPaddle = FVector(0.0f,0.0f,20.0f);
+			MyPaddle->SetActorLocation(localPositionPaddle);
+		}
 	}
 }
